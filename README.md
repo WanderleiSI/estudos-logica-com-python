@@ -393,7 +393,60 @@ Entender as bibliotecas e como elas operam é fundamental para qualquer desenvol
 <Exemplos em código - ex036, ex037, ex038>
 
 
+------
 
+### Execução Síncrona e Assíncrona
+
+#### Execução Síncrona
+
+Na execução **síncrona**, as instruções do programa são executadas uma após a outra, de forma sequencial. Cada linha de código espera a anterior terminar para ser executada. Esse é o comportamento padrão da maioria dos programas em Python.
+
+Exemplo simples de execução síncrona:
+
+```python
+import time
+
+print("Início")
+time.sleep(2)  # Aguarda 2 segundos
+print("Fim")
+```
+
+Nesse exemplo, "Fim" só será exibido após a pausa de 2 segundos.
+
+#### Execução Assíncrona
+
+A execução **assíncrona** permite que o programa realize múltiplas tarefas ao mesmo tempo, sem precisar esperar que cada uma termine para iniciar a próxima. Isso é útil, por exemplo, para operações de entrada/saída (I/O), como acessar arquivos, bancos de dados ou fazer requisições a servidores, onde o programa pode continuar executando outras tarefas enquanto aguarda a resposta.
+
+Em Python, a programação assíncrona é feita principalmente com as palavras-chave `async` e `await`, utilizando a biblioteca `asyncio`.
+
+Exemplo básico de execução assíncrona:
+
+```python
+import asyncio
+
+async def tarefa():
+    print("Início da tarefa")
+    await asyncio.sleep(2)  # Aguarda 2 segundos sem bloquear o restante do programa
+    print("Fim da tarefa")
+
+async def main():
+    await tarefa()
+
+asyncio.run(main())
+```
+
+Neste exemplo, o uso de `await asyncio.sleep(2)` permite que o programa "espere" sem bloquear a execução de outras tarefas assíncronas que possam existir.
+
+##### Vantagens da Execução Assíncrona
+
+- Permite maior eficiência em programas que realizam muitas operações de I/O.
+- O código pode ser mais responsivo e rápido, especialmente em aplicações web, servidores e automação de tarefas.
+
+##### Quando usar?
+
+- Use execução assíncrona quando seu programa realiza tarefas que podem demorar (como acessar a internet, ler arquivos grandes, etc.) e você quer que outras partes do programa continuem funcionando normalmente enquanto espera.
+
+**Link:** [Documentação oficial do asyncio](https://docs.python.org/pt-br/3/library/asyncio.html)
 
 
 Glossário:
